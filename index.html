@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home / SNEAKER</title>
+    <link rel="icon" href="sneaker.ico">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+
+        h1::before {  
+            transform: scaleX(0);
+            transform-origin: bottom right;
+        }
+
+        h1:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        h1::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            inset: 0 0 0 0;
+            background: #8cfffa;
+            z-index: -1;
+            transition: transform .3s ease;
+        }
+
+        h1 {
+            position: relative;
+            font-size: 10rem;
+            font-family: 'SF Pro Display', sans-serif;
+        }
+
+        html {
+            block-size: 100%;
+            inline-size: 100%;
+        }
+
+        body {
+            min-block-size: 100%;
+            min-inline-size: 100%;
+            margin: 0;
+            box-sizing: border-box;
+            display: grid;
+            place-content: center;
+            font-family: 'SF Pro Display', sans-serif;
+        }
+
+        @media (orientation: landscape) {
+            body {
+                grid-auto-flow: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Coming Soon..</h1>
+</body>
+</html>
