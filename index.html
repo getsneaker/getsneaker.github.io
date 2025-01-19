@@ -1,63 +1,358 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Projects / SNEAKER Solutions</title>
     <link rel="icon" href="sneaker.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 
-        h1::before {  
-            transform: scaleX(0);
-            transform-origin: bottom right;
+        :root {
+            --primary-color: #8cfffa;
+            --primary-dark: #8cfffa;
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #fff;
+            --text-secondary: #8b949e;
+            --border-color: #30363d;
         }
 
-        h1:hover::before {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
-        h1::before {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            inset: 0 0 0 0;
-            background: #8cfffa;
-            z-index: -1;
-            transition: transform .3s ease;
-        }
-
-        h1 {
-            position: relative;
-            font-size: 10rem;
-            font-family: 'SF Pro Display', sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         html {
-            block-size: 100%;
-            inline-size: 100%;
+            scroll-behavior: smooth;
         }
 
         body {
-            min-block-size: 100%;
-            min-inline-size: 100%;
-            margin: 0;
-            box-sizing: border-box;
-            display: grid;
-            place-content: center;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: 'SF Pro Display', sans-serif;
+            line-height: 1.6;
         }
 
-        @media (orientation: landscape) {
-            body {
-                grid-auto-flow: column;
+        nav {
+            background-color: rgba(22, 27, 34, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 0.75rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .logo img {
+            height: 32px;
+        }
+
+        .logo span {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            padding: 5rem 0 0rem;
+            text-align: left;
+            background: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0rem;
+            background: linear-gradient(to right, var(--primary-color), #8cfffa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .projects-section {
+            padding: 2rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            border-color: var(--primary-color);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .project-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .project-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .primary-link {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+        }
+
+        .primary-link:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .secondary-link {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .secondary-link:hover {
+            background-color: rgba(140, 255, 250, 0.1);
+        }
+
+        .project-card:last-child {
+            grid-column: span 2;
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding: 1rem 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <h1>Coming Soon..</h1>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="sneaker.ico" alt="SNEAKER Solutions Logo">
+                <span>SNEAKER Solutions</span>
+            </a>
+            <div class="nav-links">
+                <a href="https://github.com/sneakersoln" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Our Projects</h1>
+        </div>
+    </section>
+
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-chalkboard project-icon"></i>
+                        <h3 class="project-title">Smartboard Buddy</h3>
+                    </div>
+                    <p class="project-desc">A smartboard application that enhances classroom interaction. Built with modern web technologies for seamless teaching experience.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-code-branch"></i> JavaScript, Bootstrap</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/ufuayk/smartboard-buddy" target="_blank" class="project-link primary-link">View Project</a>
+                        <a href="https://ufuayk.github.io/smartboard-buddy/" target="_blank" class="project-link secondary-link">Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-file-pdf project-icon"></i>
+                        <h3 class="project-title">FOCUSPDF</h3>
+                    </div>
+                    <p class="project-desc">Lightning-fast PDF viewer for the modern web. Experience smooth rendering and intuitive navigation with our optimized viewer.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-code-branch"></i> JavaScript, Tailwind CSS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/FOCUSPDF/viewer" target="_blank" class="project-link primary-link">View Project</a>
+                        <a href="https://focuspdf.github.io/viewer/" target="_blank" class="project-link secondary-link">Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-pen-fancy project-icon"></i>
+                        <h3 class="project-title">Hey Markdown!</h3>
+                    </div>
+                    <p class="project-desc">Modern Markdown editor with real-time preview. Write and format your content with our powerful yet simple editing tools.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-code-branch"></i> JavaScript, CodeMirror</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Hey-Markdown/editor" target="_blank" class="project-link primary-link">View Project</a>
+                        <a href="https://hey-markdown.github.io/editor/" target="_blank" class="project-link secondary-link">Try Editor</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-download project-icon"></i>
+                        <h3 class="project-title">DistroHub</h3>
+                    </div>
+                    <p class="project-desc">One-stop platform for Linux distributions. Find and download your favorite distros with our clean and modern interface.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-code-branch"></i> JavaScript, Bootstrap, GSAP</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/DistributionHub/distributionhub.github.io" target="_blank" class="project-link primary-link">View Project</a>
+                        <a href="https://distributionhub.github.io/" target="_blank" class="project-link secondary-link">Visit Site</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-question project-icon"></i>
+                        <h3 class="project-title">What's Next?</h3>
+                    </div>
+                    <p class="project-desc">Innovation never stops at SNEAKER Solutions. We're working on something big that will revolutionize the way we think about development. Our next project combines cutting-edge technology with intuitive design to create an experience that's both powerful and elegant. Stay tuned as we push the boundaries of what's possible.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-code-branch"></i> Coming Soon..</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="project-link secondary-link" style="width: 100%; text-align: center;">Stay Tuned</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Made by SNEAKER Solutions with ❤︎, we do. Something ;)</p>
+        </div>
+    </footer>
 </body>
 </html>
